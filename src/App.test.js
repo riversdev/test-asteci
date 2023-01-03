@@ -1,8 +1,19 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react"
+import App from "./App"
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe('tests App', () => {
+    test('should display all elements', () => {
+        render(<App />)
+
+        expect(screen.getByText('Test')).toBeTruthy()
+        expect(screen.getByText('Cargando...')).toBeTruthy()
+
+        // screen.debug()
+    })
+
+    test('should match with snapshot', () => {
+        const { container } = render(<App />)
+
+        expect(container).toMatchSnapshot()
+    })
+})
